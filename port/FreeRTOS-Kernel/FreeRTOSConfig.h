@@ -40,6 +40,7 @@
  * See http://www.freertos.org/a00110.html
  *----------------------------------------------------------*/
 
+
 /* Scheduler Related */
 #define configUSE_PREEMPTION                    1
 #define configUSE_TICKLESS_IDLE                 0
@@ -103,9 +104,11 @@
 
 /* SMP port only */
 #define configNUM_CORES                         2
+#define configNUMBER_OF_CORES                   configNUM_CORES
 #define configTICK_CORE                         0
 #define configRUN_MULTIPLE_PRIORITIES           1
 #define configUSE_CORE_AFFINITY                 1
+#define configUSE_PASSIVE_IDLE_HOOK             0
 
 /* RP2040 specific */
 #define configSUPPORT_PICO_SYNC_INTEROP         1

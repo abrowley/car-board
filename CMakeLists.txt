@@ -10,11 +10,12 @@ pico_sdk_init()
 
 execute_process(COMMAND git describe --tags --always OUTPUT_STRIP_TRAILING_WHITESPACE
         OUTPUT_VARIABLE GIT_REPO_VERSION)
-configure_file("src/car-board-version.h.in" "piciot-version.h")
+configure_file("src/car-board-version.h.in" "car-board-version.h")
 
 add_executable(
         ${project_name}
         src/main.cpp
+        src/wifi.cpp
 )
 
 target_include_directories(${project_name} PRIVATE port/FreeRTOS-Kernel)
@@ -39,3 +40,6 @@ target_link_libraries(${project_name}
         hardware_i2c
         hardware_adc
 )
+
+pico_enable_stdio_uart(${project_name} 1)
+pico_add_extra_outputs(${project_name})
