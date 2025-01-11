@@ -1,0 +1,8 @@
+//
+// Created by alexr on 11/01/25.
+//
+
+#ifndef CAR_BOARD_CAR_BOARD_VERSION_H_IN_H
+#define CAR_BOARD_CAR_BOARD_VERSION_H_IN_H
+#define CAR_BOARD_VERSION "${GIT_REPO_VERSION}"
+#endif //CAR_BOARD_CAR_BOARD_VERSION_H_IN_H
