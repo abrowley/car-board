@@ -16,6 +16,8 @@ add_executable(
         ${project_name}
         src/main.cpp
         src/wifi.cpp
+        src/servo.cpp
+        src/lcd.cpp
 )
 
 target_include_directories(${project_name} PRIVATE port/FreeRTOS-Kernel)
