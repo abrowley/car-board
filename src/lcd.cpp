@@ -6,6 +6,7 @@
 #include "pico/binary_info.h"
 #include "task.h"
 #include "lcd.h"
+#include "car-board-version.h"
 
 /* Quick helper function for single byte transfers */
 void i2c_write_byte(uint8_t val) {
@@ -81,11 +82,11 @@ void v_lcd_task(void*){
 
     static char *message[] =
             {
-                    "RP2040 by", "Raspberry Pi",
-                    "A brand new", "microcontroller",
-                    "Twin core M0", "Full C SDK",
-                    "More power in", "your product",
-                    "More beans", "than Heinz!"
+                    "Robot Car", "Scanning",
+                    "Firmware Version", CAR_BOARD_VERSION,
+                    "***********", "***********",
+                    "-----------", "-----------",
+                    "***********", "***********"
             };
 
     while (1) {

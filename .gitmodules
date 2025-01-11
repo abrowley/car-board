@@ -4,3 +4,6 @@
 [submodule "lib/FreeRTOS-Kernel"]
 	path = lib/FreeRTOS-Kernel
 	url = git@github.com:FreeRTOS/FreeRTOS-Kernel.git
+[submodule "lib/pico-libfixmath"]
+	path = lib/pico-libfixmath
+	url = git@github.com:irishpatrick/pico-libfixmath.git

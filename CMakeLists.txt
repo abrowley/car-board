@@ -22,6 +22,10 @@ add_executable(
 
 target_include_directories(${project_name} PRIVATE port/FreeRTOS-Kernel)
 target_include_directories(${project_name} PRIVATE port/lwip)
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lib/pico-libfixmath)
+target_include_directories(${PROJECT_NAME} PRIVATE include ${CMAKE_CURRENT_SOURCE_DIR}/lib/pico-libfixmath/include)
+
 target_include_directories (${project_name} PRIVATE ${CMAKE_BINARY_DIR})
 
 if((DEFINED WIFI_SSID) AND (DEFINED WIFI_PASSWORD))
@@ -41,6 +45,8 @@ target_link_libraries(${project_name}
         FreeRTOS-Kernel-Heap4
         hardware_i2c
         hardware_adc
+        hardware_pwm
+        fixmath
 )
 
 pico_enable_stdio_uart(${project_name} 1)

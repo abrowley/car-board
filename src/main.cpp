@@ -6,7 +6,7 @@
 #include "car-board.h"
 #include "wifi.h"
 #include "lcd.h"
-
+#include "servo.h"
 
 
 void v_blink_task(void*){
@@ -22,13 +22,15 @@ void v_blink_task(void*){
 
 
 int main(){
-    sleep_ms(1000);
+    sleep_ms(10000);
     stdio_init_all();
     //init_wifi();
 
-    xTaskCreate(v_blink_task,"LED",256, nullptr,1, nullptr);
-    xTaskCreate(v_lcd_task,"LCD",128, nullptr,1, nullptr);
 
+    xTaskCreate(v_blink_task,"LED",256, nullptr,10, nullptr);
+
+    xTaskCreate(v_lcd_task,"LCD",128, nullptr,1, nullptr);
+    xTaskCreate(v_servo_task,"SERVO",128, nullptr,1, nullptr);
 
     vTaskStartScheduler();
     return 0;
