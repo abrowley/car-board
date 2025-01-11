@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 set(CMAKE_CXX_STANDARD 20)
 set(project_name car_board)
-
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/generated)
 include(lib/pico-sdk/pico_sdk_init.cmake)
 include(lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/FreeRTOS_Kernel_import.cmake)
 
@@ -18,7 +18,10 @@ add_executable(
         src/wifi.cpp
         src/servo.cpp
         src/lcd.cpp
+        src/ws2812.cpp
 )
+
+pico_generate_pio_header(${project_name} ${CMAKE_CURRENT_LIST_DIR}/src/ws2812.pio OUTPUT_DIR ${CMAKE_CURRENT_LIST_DIR}/generated)
 
 target_include_directories(${project_name} PRIVATE port/FreeRTOS-Kernel)
 target_include_directories(${project_name} PRIVATE port/lwip)
