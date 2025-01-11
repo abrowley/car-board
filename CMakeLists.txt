@@ -19,6 +19,7 @@ add_executable(
         src/servo.cpp
         src/lcd.cpp
         src/ws2812.cpp
+        src/motor.cpp
 )
 
 pico_generate_pio_header(${project_name} ${CMAKE_CURRENT_LIST_DIR}/src/ws2812.pio OUTPUT_DIR ${CMAKE_CURRENT_LIST_DIR}/generated)

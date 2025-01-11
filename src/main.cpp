@@ -7,7 +7,7 @@
 #include "lcd.h"
 #include "servo.h"
 #include "ws2812.h"
-
+#include "motor.h"
 
 void v_blink_task(void*){
     init_wifi();
@@ -22,16 +22,17 @@ void v_blink_task(void*){
 
 
 int main(){
-    sleep_ms(10000);
+
     stdio_init_all();
     //init_wifi();
 
-
+    sleep_ms(10000);
     xTaskCreate(v_blink_task,"LED",256, nullptr,10, nullptr);
 
     xTaskCreate(v_lcd_task,"LCD",128, nullptr,1, nullptr);
     xTaskCreate(v_servo_task,"SERVO",128, nullptr,1, nullptr);
     xTaskCreate(v_ws2812_task,"WS2812",128, nullptr,1, nullptr);
+    xTaskCreate(v_motor_task,"MOTOR",128, nullptr,1, nullptr);
 
     vTaskStartScheduler();
     return 0;
