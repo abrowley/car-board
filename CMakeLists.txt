@@ -24,6 +24,7 @@ add_executable(
         src/timer.cpp
         src/ir.cpp
         src/message_queue.cpp
+        src/mqtt.cpp
 )
 
 pico_generate_pio_header(${project_name} ${CMAKE_CURRENT_LIST_DIR}/src/ws2812.pio OUTPUT_DIR ${CMAKE_CURRENT_LIST_DIR}/generated)
