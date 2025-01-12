@@ -32,13 +32,27 @@ int main(){
     sleep_ms(10000);
     xTaskCreate(v_blink_task,"LED",256, nullptr,10, nullptr);
 
-    //xTaskCreate(v_lcd_task,"LCD",128, nullptr,4, nullptr);
-    //xTaskCreate(v_servo_task,"SERVO",128, nullptr,4, nullptr);
-    //xTaskCreate(v_ws2812_task,"WS2812",128, nullptr,4, nullptr);
-    //xTaskCreate(v_motor_task,"MOTOR",128, nullptr,4, nullptr);
-    //xTaskCreate(v_ultrasonic_task,"DST",256, nullptr,1, nullptr);
-    xTaskCreate(v_ir_task,"IR",256, nullptr,1, nullptr);
+    xTaskCreate(v_lcd_task,"LCD",128, nullptr,9, nullptr);
+    xTaskCreate(v_servo_task,"SERVO",128, nullptr,8, nullptr);
+    xTaskCreate(v_ws2812_task,"WS2812",128, nullptr,7, nullptr);
+    xTaskCreate(v_motor_task,"MOTOR",128, nullptr,6, nullptr);
+    xTaskCreate(v_ultrasonic_task,"DST",128, nullptr,5, nullptr);
+    xTaskCreate(v_ir_task,"IR",128, nullptr,1, nullptr);
 
     vTaskStartScheduler();
     return 0;
 }
+
+void vApplicationTickHook (void)
+{
+};
+
+void vApplicationStackOverflowHook(TaskHandle_t Task, char *pcTaskName)
+{
+    panic("stack overflow (not the helpful kind) for %s\n", *pcTaskName);
+}
+
+void vApplicationMallocFailedHook(void)
+{
+    panic("Malloc Failed\n");
+};
