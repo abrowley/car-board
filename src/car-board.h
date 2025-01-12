@@ -9,5 +9,6 @@
 #define DELAY 1000
 #define WIFI_RETRY 3
 #define DEBUG_printf printf
+#define MESSAGE_SIZE 100
 
 #endif //CAR_BOARD_CAR_BOARD_H

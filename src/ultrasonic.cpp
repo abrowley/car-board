@@ -4,6 +4,7 @@
 #include <pico/time.h>
 #include "task.h"
 #include "car-board.h"
+#include "message_queue.h"
 
 static volatile uint32_t capture1, capture2, capture_period;
 static volatile bool capture_flag1, capture_flag2;
@@ -158,8 +159,10 @@ alarm_callback_t pulse_callback(alarm_id_t id, void *user_data){
     return NULL;
 }
 
-void v_ultrasonic_task(void*){
+void v_ultrasonic_task(void* mq){
     us_init();
+    auto message_queue = static_cast<MSG_QUEUE_T*>(mq);
+    char message[MESSAGE_SIZE];
     const uint32_t us_period = 30;
     uint32_t us_distance = 0;
     uint32_t t1 = timer_read();
@@ -168,7 +171,9 @@ void v_ultrasonic_task(void*){
         uint32_t t2 = timer_read();
         if(timer_elapsed_ms(t1,t2) >= us_period){
             us_tick(&us_distance);
-            printf("Distance %d\n",us_distance);
+            sprintf(message,R"({"distance": "%d"})",us_distance);
+            xQueueSend(message_queue->output_queue,message,(TickType_t)10);
+            printf("%s\n",message);
             t1=t2;
         }
         vTaskDelay(2*DELAY);

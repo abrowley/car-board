@@ -43,7 +43,7 @@ int main(){
     xTaskCreate(v_servo_task,"SERVO",128, nullptr,8, nullptr);
     xTaskCreate(v_ws2812_task,"WS2812",128, nullptr,7, nullptr);
     xTaskCreate(v_motor_task,"MOTOR",128, nullptr,6, nullptr);
-    xTaskCreate(v_ultrasonic_task,"DST",128, nullptr,5, nullptr);
+    xTaskCreate(v_ultrasonic_task,"DST",128, mq,5, nullptr);
     xTaskCreate(v_ir_task,"IR",128, nullptr,1, nullptr);
 
 
