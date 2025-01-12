@@ -23,6 +23,7 @@ add_executable(
         src/ultrasonic.cpp
         src/timer.cpp
         src/ir.cpp
+        src/message_queue.cpp
 )
 
 pico_generate_pio_header(${project_name} ${CMAKE_CURRENT_LIST_DIR}/src/ws2812.pio OUTPUT_DIR ${CMAKE_CURRENT_LIST_DIR}/generated)

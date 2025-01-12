@@ -10,6 +10,8 @@
 #include "motor.h"
 #include "ultrasonic.h"
 #include "ir.h"
+#include "message_queue.h"
+#include "car-board-version.h"
 
 void v_blink_task(void*){
     init_wifi();
@@ -27,11 +29,14 @@ int main(){
 
     stdio_init_all();
     //init_wifi();
-    printf("hello car-board\n");
-
+    printf("CARBOARD %s\n",CAR_BOARD_VERSION);
     sleep_ms(10000);
-    xTaskCreate(v_blink_task,"LED",256, nullptr,10, nullptr);
+    printf("booted\n");
 
+    auto mq = message_queue_init();
+
+
+    xTaskCreate(v_blink_task,"LED",256, nullptr,10, nullptr);
     xTaskCreate(v_lcd_task,"LCD",128, nullptr,9, nullptr);
     xTaskCreate(v_servo_task,"SERVO",128, nullptr,8, nullptr);
     xTaskCreate(v_ws2812_task,"WS2812",128, nullptr,7, nullptr);
