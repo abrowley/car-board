@@ -20,9 +20,13 @@ add_executable(
         src/lcd.cpp
         src/ws2812.cpp
         src/motor.cpp
+        src/ultrasonic.cpp
+        src/timer.cpp
+        src/ir.cpp
 )
 
 pico_generate_pio_header(${project_name} ${CMAKE_CURRENT_LIST_DIR}/src/ws2812.pio OUTPUT_DIR ${CMAKE_CURRENT_LIST_DIR}/generated)
+pico_generate_pio_header(${project_name} ${CMAKE_CURRENT_LIST_DIR}/src/ir_receive.pio OUTPUT_DIR ${CMAKE_CURRENT_LIST_DIR}/generated)
 
 target_include_directories(${project_name} PRIVATE port/FreeRTOS-Kernel)
 target_include_directories(${project_name} PRIVATE port/lwip)
@@ -53,5 +57,6 @@ target_link_libraries(${project_name}
         fixmath
 )
 
-pico_enable_stdio_uart(${project_name} 1)
+pico_enable_stdio_uart(${project_name} 0)
+pico_enable_stdio_usb(${project_name} 1)
 pico_add_extra_outputs(${project_name})

@@ -26,10 +26,10 @@ void v_motor_task(void*){
     gpio_put(MOTOR_LF_DIR_PIN, false);
     gpio_put(MOTOR_RF_DIR_PIN, false);
 
-    set_pwm(MOTOR_LB_PWM_PIN,50.0f,0.5f);
-    set_pwm(MOTOR_RB_PWM_PIN,50.0f,0.5f);
-    set_pwm(MOTOR_LF_PWM_PIN,50.0f,0.5f);
-    set_pwm(MOTOR_RF_PWM_PIN,50.0f,0.5f);
+    set_pwm(MOTOR_LB_PWM_PIN,50.0f,0.0f);
+    set_pwm(MOTOR_RB_PWM_PIN,50.0f,0.0f);
+    set_pwm(MOTOR_LF_PWM_PIN,50.0f,0.0f);
+    set_pwm(MOTOR_RF_PWM_PIN,50.0f,0.0f);
 
     while (true){
         vTaskDelay(DELAY);
